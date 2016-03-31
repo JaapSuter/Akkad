@@ -15,7 +15,6 @@ Akkad
 
 [State tutorial](https://github.com/brochington/Akkad/blob/master/docs/tutorials/state.md)
 
-
 Akkad is a React Webgl target that uses the Babylon.js library. Its aim is to allow any developer familiar with React the ability to create 3D scenes and games.
 
 ### Features
