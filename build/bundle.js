@@ -4098,7 +4098,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	var _interopRequireDefault = __webpack_require__(18)["default"];
 
 	Object.defineProperty(exports, "__esModule", {
-	        value: true
+	    value: true
 	});
 
 	var _babylonjs = __webpack_require__(89);
@@ -4110,57 +4110,57 @@ return /******/ (function(modules) { // webpackBootstrap
 	var _immutable2 = _interopRequireDefault(_immutable);
 
 	var cameraCreators = {
-	        free: function free(entityID, config, scene) {
-	                var initialPosition = new (_bind.apply(_babylonjs2["default"].Vector3, [null].concat(_toConsumableArray(config.initialPosition))))();
+	    free: function free(entityID, config, scene) {
+	        var initialPosition = new (_bind.apply(_babylonjs2["default"].Vector3, [null].concat(_toConsumableArray(config.initialPosition))))();
 
-	                var camera = new _babylonjs2["default"].FreeCamera(entityID, initialPosition, scene);
+	        var camera = new _babylonjs2["default"].FreeCamera(entityID, initialPosition, scene);
 
-	                if (config.target) {
-	                        var target = new (_bind.apply(_babylonjs2["default"].Vector3, [null].concat(_toConsumableArray(config.target))))();
-	                        camera.setTarget(target);
-	                }
-
-	                return camera;
-	        },
-
-	        arcRotate: function arcRotate(entityID, config, scene) {
-	                var _config$alpha = config.alpha;
-	                var alpha = _config$alpha === undefined ? 0 : _config$alpha;
-	                var _config$beta = config.beta;
-	                var beta = _config$beta === undefined ? 0 : _config$beta;
-	                var _config$radius = config.radius;
-	                var radius = _config$radius === undefined ? 0 : _config$radius;
-	                var initialPosition = config.initialPosition;
-
-	                var target = new (_bind.apply(_babylonjs2["default"].Vector3, [null].concat(_toConsumableArray(config.target))))();
-
-	                var camera = new _babylonjs2["default"].ArcRotateCamera(entityID, alpha, beta, radius, target, scene);
-
-	                if (initialPosition) {
-	                        camera.setPosition(new (_bind.apply(_babylonjs2["default"].Vector3, [null].concat(_toConsumableArray(initialPosition))))());
-	                }
-
-	                return camera;
+	        if (config.target) {
+	            var target = new (_bind.apply(_babylonjs2["default"].Vector3, [null].concat(_toConsumableArray(config.target))))();
+	            camera.setTarget(target);
 	        }
+
+	        return camera;
+	    },
+
+	    arcRotate: function arcRotate(entityID, config, scene) {
+	        var _config$alpha = config.alpha;
+	        var alpha = _config$alpha === undefined ? 0 : _config$alpha;
+	        var _config$beta = config.beta;
+	        var beta = _config$beta === undefined ? 0 : _config$beta;
+	        var _config$radius = config.radius;
+	        var radius = _config$radius === undefined ? 0 : _config$radius;
+	        var initialPosition = config.initialPosition;
+
+	        var target = new (_bind.apply(_babylonjs2["default"].Vector3, [null].concat(_toConsumableArray(config.target))))();
+
+	        var camera = new _babylonjs2["default"].ArcRotateCamera(entityID, alpha, beta, radius, target, scene);
+
+	        if (initialPosition) {
+	            camera.setPosition(new (_bind.apply(_babylonjs2["default"].Vector3, [null].concat(_toConsumableArray(initialPosition))))());
+	        }
+
+	        return camera;
+	    }
 	};
 
 	exports["default"] = {
-	        setCamera: function setCamera(state, actions, sceneID, entityID, config) {
-	                var canvas = state.getIn(["entities", "canvas-" + sceneID, "entity"]);
-	                var scene = state.getIn(["entities", sceneID, "entity"]);
+	    setCamera: function setCamera(state, actions, sceneID, entityID, config) {
+	        var canvas = state.getIn(["entities", "canvas-" + sceneID, "entity"]);
+	        var scene = state.getIn(["entities", sceneID, "entity"]);
 
-	                var camera = cameraCreators[config.type](entityID, config, scene);
+	        var camera = cameraCreators[config.type](entityID, config, scene);
 
-	                camera.attachControl(canvas, false);
+	        camera.attachControl(canvas, false);
 
-	                var cameraObj = _immutable2["default"].Map({
-	                        id: entityID,
-	                        entity: camera,
-	                        type: "camera"
-	                });
+	        var cameraObj = _immutable2["default"].Map({
+	            id: entityID,
+	            entity: camera,
+	            type: "camera"
+	        });
 
-	                return state.setIn(["entities", entityID], cameraObj);
-	        }
+	        return state.setIn(["entities", entityID], cameraObj);
+	    }
 	};
 	module.exports = exports["default"];
 
@@ -4253,7 +4253,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	var _interopRequireDefault = __webpack_require__(18)["default"];
 
 	Object.defineProperty(exports, "__esModule", {
-	        value: true
+	    value: true
 	});
 
 	var _babylonjs = __webpack_require__(89);
@@ -4265,52 +4265,52 @@ return /******/ (function(modules) { // webpackBootstrap
 	var _immutable2 = _interopRequireDefault(_immutable);
 
 	exports["default"] = {
-	        setScene: function setScene(state, actions, sceneID, canvas) {
-	                var canvasID = "canvas-" + sceneID;
-	                var engineID = "engine-" + sceneID;
+	    setScene: function setScene(state, actions, sceneID, canvas) {
+	        var canvasID = "canvas-" + sceneID;
+	        var engineID = "engine-" + sceneID;
 
-	                var engine = new _babylonjs2["default"].Engine(canvas, true);
-	                var scene = new _babylonjs2["default"].Scene(engine);
+	        var engine = new _babylonjs2["default"].Engine(canvas, true);
+	        var scene = new _babylonjs2["default"].Scene(engine);
 
-	                state = state.setIn(["entities", canvasID], _immutable2["default"].Map({
-	                        id: canvasID,
-	                        entity: canvas,
-	                        type: "canvas"
-	                }));
+	        state = state.setIn(["entities", canvasID], _immutable2["default"].Map({
+	            id: canvasID,
+	            entity: canvas,
+	            type: "canvas"
+	        }));
 
-	                state = state.setIn(["entities", engineID], _immutable2["default"].Map({
-	                        id: engineID,
-	                        entity: engine,
-	                        type: "engine"
-	                }));
+	        state = state.setIn(["entities", engineID], _immutable2["default"].Map({
+	            id: engineID,
+	            entity: engine,
+	            type: "engine"
+	        }));
 
-	                state = state.setIn(["entities", sceneID], _immutable2["default"].Map({
-	                        id: sceneID,
-	                        entity: scene,
-	                        type: "scene"
-	                }));
+	        state = state.setIn(["entities", sceneID], _immutable2["default"].Map({
+	            id: sceneID,
+	            entity: scene,
+	            type: "scene"
+	        }));
 
-	                engine.runRenderLoop(function () {
-	                        scene.render();
-	                });
+	        engine.runRenderLoop(function () {
+	            scene.render();
+	        });
 
-	                return state;
-	        },
+	        return state;
+	    },
 
-	        disposeScene: function disposeScene(state, actions, sceneID) {
-	                var scene = state.getIn(["entities", sceneID, "entity"]);
-	                var engine = state.getIn(["entities", "engine-" + sceneID, "entity"]);
+	    disposeScene: function disposeScene(state, actions, sceneID) {
+	        var scene = state.getIn(["entities", sceneID, "entity"]);
+	        var engine = state.getIn(["entities", "engine-" + sceneID, "entity"]);
 
-	                scene.dispose();
+	        scene.dispose();
 
-	                engine.stopRenderLoop();
+	        engine.stopRenderLoop();
 
-	                state.deleteIn(["entities", sceneID]);
-	                state.deleteIn(["entities", "canvas-" + sceneID]);
-	                state.deleteIn(["entities", "engine-" + sceneID]);
+	        state.deleteIn(["entities", sceneID]);
+	        state.deleteIn(["entities", "canvas-" + sceneID]);
+	        state.deleteIn(["entities", "engine-" + sceneID]);
 
-	                return state;
-	        }
+	        return state;
+	    }
 	};
 	module.exports = exports["default"];
 
@@ -6808,7 +6808,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	var _interopRequireDefault = __webpack_require__(18)["default"];
 
 	Object.defineProperty(exports, "__esModule", {
-	        value: true
+	    value: true
 	});
 
 	var _babylonjs = __webpack_require__(89);
@@ -6820,23 +6820,23 @@ return /******/ (function(modules) { // webpackBootstrap
 	var _immutable2 = _interopRequireDefault(_immutable);
 
 	var ParticlesActions = {
-	        createParticles: function createParticles(state, actions, sceneID, entityID, targetEntityID, img) {
-	                var scene = state.getIn(["entities", sceneID, "entity"]);
-	                var targetEntity = state.getIn(["entities", targetEntityID, "entity"]);
+	    createParticles: function createParticles(state, actions, sceneID, entityID, targetEntityID, img) {
+	        var scene = state.getIn(["entities", sceneID, "entity"]);
+	        var targetEntity = state.getIn(["entities", targetEntityID, "entity"]);
 
-	                var particles = new _babylonjs2["default"].ParticleSystem(entityID, 2000, scene);
+	        var particles = new _babylonjs2["default"].ParticleSystem(entityID, 2000, scene);
 
-	                particles.particleTexture = new _babylonjs2["default"].Texture(img, scene);
-	                particles.emitter = targetEntity;
+	        particles.particleTexture = new _babylonjs2["default"].Texture(img, scene);
+	        particles.emitter = targetEntity;
 
-	                var particlesObj = _immutable2["default"].Map({
-	                        id: entityID,
-	                        entity: particles,
-	                        type: "particles"
-	                });
+	        var particlesObj = _immutable2["default"].Map({
+	            id: entityID,
+	            entity: particles,
+	            type: "particles"
+	        });
 
-	                return state.setIn(["entities", entityID], particlesObj);
-	        }
+	        return state.setIn(["entities", entityID], particlesObj);
+	    }
 	};
 
 	exports["default"] = ParticlesActions;
